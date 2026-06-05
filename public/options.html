@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>cuti.io — Settings</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="logo.png" alt="cuti.io" class="logo" />
+      </header>
+
+      <section class="form-section">
+        <label for="api-key-input" class="label">API Key</label>
+        <p class="hint">
+          Create your API key at
+          <a href="https://cuti.io/settings/api-keys" target="_blank" rel="noopener noreferrer">
+            cuti.io &rarr; Settings &rarr; API Keys
+          </a>
+        </p>
+        <input
+          type="password"
+          id="api-key-input"
+          class="input"
+          placeholder="cuti_xxxxxxxxxxxx"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="btn-save" class="btn btn-primary">Save</button>
+        <p id="feedback" class="feedback hidden"></p>
+      </section>
+    </div>
+    <script src="options.js"></script>
+  </body>
+</html>

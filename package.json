@@ -1,0 +1,25 @@
+{
+  "name": "cuti-browser-extension",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.291",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.3",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.60.1",
+    "vitest": "^3.0.0"
+  }
+}

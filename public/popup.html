@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>cuti.io</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="logo.png" alt="cuti.io" class="logo" />
+      </header>
+
+      <div id="state-no-key" class="state hidden">
+        <p class="message">Set up your API key in Settings to get started.</p>
+        <button id="btn-open-settings" class="btn btn-primary">Open Settings</button>
+      </div>
+
+      <div id="state-loading" class="state hidden">
+        <div class="spinner"></div>
+        <p class="message">Shortening&hellip;</p>
+      </div>
+
+      <div id="state-success" class="state hidden">
+        <p class="badge-success">&#10003; Copied to clipboard!</p>
+        <a id="short-url-link" href="#" target="_blank" rel="noopener noreferrer" class="short-url"></a>
+        <div class="actions">
+          <button id="btn-copy-again" class="btn btn-secondary">Copy again</button>
+          <button id="btn-settings-success" class="btn btn-icon" title="Settings">&#9881;</button>
+        </div>
+      </div>
+
+      <div id="state-error" class="state hidden">
+        <p id="error-message" class="message error"></p>
+        <div class="actions">
+          <button id="btn-retry" class="btn btn-primary">Try again</button>
+          <button id="btn-settings-error" class="btn btn-icon" title="Settings">&#9881;</button>
+        </div>
+      </div>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
