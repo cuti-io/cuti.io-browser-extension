@@ -1,30 +1,36 @@
 # cuti.io browser extension
 
-This is the code for the cuti.io browser extension. It is a simple extension that allows you to easily access your cuti.io account and manage your tasks.
+A browser extension that shortens the URL of the current tab using the cuti.io API.
 
-## Prerequisites
+## Build environment
 
-- [Node.js](https://nodejs.org/) 20+
+- **OS:** Any (macOS, Linux, Windows)
+- **Node.js:** 20 or higher (developed with v24.13.1)
+- **npm:** bundled with Node.js (developed with v11.8.0)
 
-## Build
+All other dependencies (including esbuild ^0.25.0) are installed via npm and listed in `package.json`.
 
-Install dependencies:
+## Build instructions
+
+1. Install dependencies:
 
 ```bash
 npm install
 ```
 
-Build the extension into `dist/`:
+2. Build the extension into `dist/`:
 
 ```bash
 npm run build
 ```
 
-For development with automatic rebuilds on file changes:
+The `dist/` folder contains the complete, ready-to-load extension. The build copies everything from `public/` (HTML, CSS, icons, manifest) and bundles `src/popup.ts` → `dist/popup.js` and `src/options.ts` → `dist/options.js` using esbuild.
 
-```bash
-npm run watch
-```
+## Source structure
+
+- `src/` — TypeScript source files
+- `public/` — static files copied as-is to `dist/` (manifest, HTML, CSS, icons)
+- `scripts/build.mjs` — build script
 
 ## Loading in the browser
 
