@@ -57,8 +57,69 @@ jobs:
           zip -r "../cuti-io-browser-extension-firefox-${VERSION}.zip" . -x ".DS_Store"
           cd ..
 
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+
+      - name: Upload Chrome package artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: chrome-package
+          path: cuti-io-browser-extension-chrome-*.zip
+
       - name: Attach to release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.event.release.tag_name }}
           files: cuti-io-browser-extension-*.zip
+
+  publish-chrome:
+    name: Publish to Chrome Web Store
+    needs: [package]
+    environment: store-publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Chrome package
+        uses: actions/download-artifact@v8
+        with:
+          name: chrome-package
+          path: .
+
+      - name: Upload and publish to Chrome Web Store
+        shell: bash
+        env:
+          CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
+        run: |
+          ZIP_FILE=$(ls cuti-io-browser-extension-chrome-*.zip)
+          npx --yes chrome-webstore-upload-cli \
+            --source "$ZIP_FILE" \
+            --extension-id cdmikknjlmaelcoacbeaikdlmhmknnee
+
+  publish-firefox:
+    name: Publish to Firefox Add-ons
+    needs: [package]
+    environment: store-publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download dist artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist
+
+      - name: Submit to Firefox Add-ons
+        shell: bash
+        env:
+          AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+          AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        run: |
+          npx --yes web-ext sign \
+            --source-dir dist \
+            --channel=listed \
+            --api-key="$AMO_JWT_ISSUER" \
+            --api-secret="$AMO_JWT_SECRET"
