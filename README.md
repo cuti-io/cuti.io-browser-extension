@@ -5,7 +5,7 @@ A browser extension that shortens the URL of the current tab using the cuti.io A
 ## Build environment
 
 - **OS:** Any (macOS, Linux, Windows)
-- **Node.js:** 20 or higher (developed with v24.13.1)
+- **Node.js:** 24 or higher (developed with v24.13.1)
 - **npm:** bundled with Node.js (developed with v11.8.0)
 
 All other dependencies (including esbuild ^0.25.0) are installed via npm and listed in `package.json`.
