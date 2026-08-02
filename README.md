@@ -2,6 +2,11 @@
 
 A browser extension that shortens the URL of the current tab using the cuti.io API.
 
+## Install
+
+- **Chrome / Chromium:** [Chrome Web Store](https://chromewebstore.google.com/detail/cutiio/cdmikknjlmaelcoacbeaikdlmhmknnee)
+- **Firefox:** [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/cuti-io/)
+
 ## Build environment
 
 - **OS:** Any (macOS, Linux, Windows)
